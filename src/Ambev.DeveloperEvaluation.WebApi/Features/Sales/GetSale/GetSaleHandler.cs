@@ -29,16 +29,16 @@ namespace Ambev.DeveloperEvaluation.Application.Sales.GetSale
                 Branch = sale.Branch,
                 TotalAmount = sale.TotalAmount,
                 Status = sale.Status.ToString(),
-                Items = sale.Items?.ConvertAll(i => new GetSaleResultItem
-                {
-                    Id = i.Id,
-                    Product = i.Product,
-                    Quantity = i.Quantity,
-                    UnitPrice = i.UnitPrice,
-                    Discount = i.Discount,
-                    Total = i.Total,
-                    IsCancelled = i.IsCancelled
-                })
+                //Items = sale.Items?.ConvertAll(i => new GetSaleResultItem
+                //{
+                //    Id = i.Id,
+                //    Product = i.Product,
+                //    Quantity = i.Quantity,
+                //    UnitPrice = i.UnitPrice,
+                //    Discount = i.Discount,
+                //    Total = i.Total,
+                //    IsCancelled = i.IsCancelled
+                //})
             };
         }
     }
