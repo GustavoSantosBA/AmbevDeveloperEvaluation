@@ -1,14 +1,10 @@
-﻿using System;
+﻿using Ambev.DeveloperEvaluation.Domain.Entities;
+using System;
 using System.Collections.Generic;
 
 namespace Ambev.DeveloperEvaluation.WebApi.Features.Sales.GetAllSales
 {
     public class GetAllSalesResponse
-    {
-        public List<GetAllSalesSaleResponse> Sales { get; set; }
-    }
-
-    public class GetAllSalesSaleResponse
     {
         public Guid Id { get; set; }
         public string SaleNumber { get; set; }
@@ -17,5 +13,6 @@ namespace Ambev.DeveloperEvaluation.WebApi.Features.Sales.GetAllSales
         public string Branch { get; set; }
         public decimal TotalAmount { get; set; }
         public string Status { get; set; }
+        public IEnumerable<SaleItem> Items { get; set; }
     }
 }

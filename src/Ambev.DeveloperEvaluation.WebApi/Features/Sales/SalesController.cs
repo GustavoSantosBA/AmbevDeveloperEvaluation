@@ -2,7 +2,6 @@
 using Ambev.DeveloperEvaluation.Application.Sales.GetSale;
 using Ambev.DeveloperEvaluation.Application.Sales.GetAllSales;
 using Ambev.DeveloperEvaluation.Application.Sales.UpdateSale;
-using Ambev.DeveloperEvaluation.Application.Sales.DeleteSale;
 using Ambev.DeveloperEvaluation.WebApi.Features.Sales.CreateSale;
 using Ambev.DeveloperEvaluation.WebApi.Features.Sales.GetSale;
 using Ambev.DeveloperEvaluation.WebApi.Features.Sales.GetAllSales;
@@ -13,6 +12,10 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
+using Ambev.DeveloperEvaluation.Application.Users.GetUser;
+using Ambev.DeveloperEvaluation.WebApi.Common;
+using Ambev.DeveloperEvaluation.WebApi.Features.Users.GetUser;
+using Ambev.DeveloperEvaluation.Application.Sales.DeleteSale;
 
 namespace Ambev.DeveloperEvaluation.WebApi.Features.Sales
 {
@@ -49,7 +52,13 @@ namespace Ambev.DeveloperEvaluation.WebApi.Features.Sales
                 return NotFound();
 
             var response = _mapper.Map<GetSaleResponse>(result);
-            return Ok(response);
+
+            return Ok(new ApiResponseWithData<GetSaleResponse>
+            {
+                Success = true,
+                Message = "Sale retrieved successfully",
+                Data = response
+            });
         }
 
         // GET: api/sales
@@ -58,8 +67,14 @@ namespace Ambev.DeveloperEvaluation.WebApi.Features.Sales
         {
             var command = new GetAllSalesCommand();
             var result = await _mediator.Send(command);
-            var response = _mapper.Map<GetAllSalesResponse>(result);
-            return Ok(response);
+            var response = _mapper.Map<IEnumerable<GetAllSalesResult>, IEnumerable<GetAllSalesResponse>>(result);
+
+            return Ok(new ApiResponseWithData<IEnumerable<GetAllSalesResponse>>
+            {
+                Success = true,
+                Message = "Sales retrieved successfully",
+                Data = response
+            });
         }
 
         // PUT: api/sales/{id}
@@ -70,7 +85,12 @@ namespace Ambev.DeveloperEvaluation.WebApi.Features.Sales
             command.Id = id;
             var result = await _mediator.Send(command);
             var response = _mapper.Map<UpdateSaleResponse>(result);
-            return Ok(response);
+            return Ok(new ApiResponseWithData<UpdateSaleResponse>
+            {
+                Success = true,
+                Message = "Sale retrieved successfully",
+                Data = response
+            });
         }
 
         // DELETE: api/sales/{id}
@@ -80,7 +100,13 @@ namespace Ambev.DeveloperEvaluation.WebApi.Features.Sales
             var command = new DeleteSaleCommand { Id = id };
             var result = await _mediator.Send(command);
             var response = _mapper.Map<DeleteSaleResponse>(result);
-            return Ok(response);
+
+            return Ok(new ApiResponseWithData<DeleteSaleResponse>
+            {
+                Success = true,
+                Message = "Sale retrieved successfully",
+                Data = response
+            });
         }
     }
 }

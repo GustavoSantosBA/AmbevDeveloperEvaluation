@@ -1,4 +1,5 @@
 ﻿using Ambev.DeveloperEvaluation.Domain.Entities;
+using Ambev.DeveloperEvaluation.Domain.Enums;
 using Ambev.DeveloperEvaluation.Domain.Repositories;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -47,7 +48,8 @@ namespace Ambev.DeveloperEvaluation.ORM.Repositories
             var sale = await _context.Sales.FindAsync(id);
             if (sale != null)
             {
-                _context.Sales.Remove(sale);
+                sale.Status = SaleStatus.Cancelled;
+                _context.Sales.Update(sale);
                 await _context.SaveChangesAsync();
             }
         }

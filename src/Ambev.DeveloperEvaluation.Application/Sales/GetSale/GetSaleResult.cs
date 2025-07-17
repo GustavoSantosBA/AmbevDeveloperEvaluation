@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Ambev.DeveloperEvaluation.Domain.Entities;
+using System;
 using System.Collections.Generic;
 
 namespace Ambev.DeveloperEvaluation.Application.Sales.GetSale
@@ -12,17 +13,7 @@ namespace Ambev.DeveloperEvaluation.Application.Sales.GetSale
         public string Branch { get; set; }
         public decimal TotalAmount { get; set; }
         public string Status { get; set; }
-        public List<GetSaleResultItem> Items { get; set; }
+        public List<SaleItem> Items { get; set; }
     }
 
-    public class GetSaleResultItem
-    {
-        public Guid Id { get; set; }
-        public string Product { get; set; }
-        public int Quantity { get; set; }
-        public decimal UnitPrice { get; set; }
-        public decimal Discount { get; set; }
-        public decimal Total { get; set; }
-        public bool IsCancelled { get; set; }
-    }
 }

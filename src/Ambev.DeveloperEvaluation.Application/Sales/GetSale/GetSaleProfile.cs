@@ -2,13 +2,13 @@
 using Ambev.DeveloperEvaluation.Domain.Entities;
 using AutoMapper;
 
-namespace Ambev.DeveloperEvaluation.WebApi.Features.Sales.GetSale
+namespace Ambev.DeveloperEvaluation.Application.Sales.GetSale
 {
     public class GetSaleProfile : Profile
     {
         public GetSaleProfile()
         {
-            CreateMap<GetSaleResult, GetSaleResponse>();
+            CreateMap<Sale, GetSaleResult>();
         }
     }
 }

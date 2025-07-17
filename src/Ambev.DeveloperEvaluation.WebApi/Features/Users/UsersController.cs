@@ -86,7 +86,7 @@ public class UsersController : BaseController
         {
             Success = true,
             Message = "User retrieved successfully",
-            Data = _mapper.Map<GetUserResponse>(response)
+            Data = _mapper.Map<GetUserResult, GetUserResponse>(response)
         });
     }
 
